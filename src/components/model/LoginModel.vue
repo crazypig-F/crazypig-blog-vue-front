@@ -131,6 +131,7 @@ export default {
               that.username = "";
               that.password = "";
               that.$store.commit("login", data.data);
+              window.localStorage.setItem("Authorization", data.token);
               that.$store.commit("closeModel");
               that.$toast({ type: "success", message: "登录成功" });
             } else {

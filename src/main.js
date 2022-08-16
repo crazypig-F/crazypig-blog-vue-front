@@ -84,6 +84,19 @@ axios.interceptors.response.use(
   }
 );
 
+// 请求拦截器, 每次请求都会在请求头中携带token
+axios.interceptors.request.use(
+  config => {
+    if (localStorage.getItem("Authorization")) {
+      config.headers.Authorization = localStorage.getItem("Authorization");
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
+
 new Vue({
   router,
   store,
